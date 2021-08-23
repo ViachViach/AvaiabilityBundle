@@ -1,0 +1,21 @@
+services:
+
+  Predis\ClientInterface:
+    class: Predis\ClientInterface
+    public: public
+
+  AvailabilityBundle\Service\RedisService:
+    class: AvailabilityBundle\Service\RedisService
+    arguments:
+      - '@Predis\ClientInterface'
+    public: public
+
+  AvailabilityBundle\Service\AvailabilityService:
+    class: AvailabilityBundle\Service\AvailabilityService
+    arguments:
+      - '@AvailabilityBundle\Service\RedisService'
+    public: public
+
+  AvailabilityBundle\Service\AvailabilityInterface:
+    alias: AvailabilityBundle\Service\AvailabilityService
+    public: true
