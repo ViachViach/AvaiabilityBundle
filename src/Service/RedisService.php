@@ -7,7 +7,7 @@ namespace AvailabilityBundle\Service;
 use AvailabilityBundle\Enum\RedisKeyEnum;
 use Predis\ClientInterface;
 
-class RedisService
+class RedisService implements RedisInterface
 {
     public function __construct(
         private ClientInterface $redisClient,

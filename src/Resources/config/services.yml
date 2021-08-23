@@ -16,6 +16,10 @@ services:
       - '@AvailabilityBundle\Service\RedisService'
     public: public
 
+  AvailabilityBundle\Service\RedisInterface:
+    alias: AvailabilityBundle\Service\RedisService
+    public: true
+
   AvailabilityBundle\Service\AvailabilityInterface:
     alias: AvailabilityBundle\Service\AvailabilityService
     public: true
