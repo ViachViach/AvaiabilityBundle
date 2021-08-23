@@ -38,11 +38,6 @@
             "AvailabilityBundle\\Tests\\": "tests/"
         }
     },
-    "replace": {
-        "symfony/polyfill-ctype": "*",
-        "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-php72": "*"
-    },
     "scripts": {
         "check": {
             "codestyle": "@codestyle",
@@ -54,6 +49,7 @@
     "conflict": {
         "symfony/symfony": "*"
     },
+    "minimum-stability":  "dev",
     "extra": {
         "symfony": {
             "allow-contrib": false,
