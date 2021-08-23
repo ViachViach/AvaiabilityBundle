@@ -1,8 +1,7 @@
 services:
 
-  Predis\ClientInterface:
-    class: Predis\ClientInterface
-    public: public
+  Predis\Client: '@snc_redis.default'
+  Predis\ClientInterface: '@Predis\Client'
 
   AvailabilityBundle\Service\RedisService:
     class: AvailabilityBundle\Service\RedisService
@@ -17,9 +16,9 @@ services:
     public: public
 
   AvailabilityBundle\Service\RedisInterface:
-    alias: AvailabilityBundle\Service\RedisService
+    alias: '@AvailabilityBundle\Service\RedisService'
     public: true
 
   AvailabilityBundle\Service\AvailabilityInterface:
-    alias: AvailabilityBundle\Service\AvailabilityService
+    alias: '@AvailabilityBundle\Service\AvailabilityService'
     public: true
