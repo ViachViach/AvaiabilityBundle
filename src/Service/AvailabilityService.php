@@ -10,12 +10,12 @@ class AvailabilityService implements AvailabilityInterface
         private RedisService $redisService,
     ) { }
 
-    public function isAvailable(string $cityCode): void
+    public function isAvailable(string $cityCode, string $visaType): void
     {
         while (true) {
-            $isAvailable = $this->redisService->isQueueAvailable($cityCode);
+            $isAvailable = $this->redisService->isQueueAvailable($cityCode, $visaType);
             if ($isAvailable) {
-                $this->redisService->setAvailableQueue(false, $cityCode);
+                $this->redisService->setAvailableQueue(false, $cityCode, $visaType);
                 return;
             }
 
@@ -23,10 +23,10 @@ class AvailabilityService implements AvailabilityInterface
         }
     }
 
-    public function isOpenDate(string $cityCode): void
+    public function isOpenDate(string $cityCode, string $visaType): void
     {
         while (true) {
-            $isAvailable = $this->redisService->isOpenDate($cityCode);
+            $isAvailable = $this->redisService->isOpenDate($cityCode, $visaType);
             if ($isAvailable) {
                 return;
             }

@@ -13,37 +13,37 @@ class RedisService implements RedisInterface
         private ClientInterface $redisClient,
     ) { }
 
-    public function isQueueAvailable(string $city): bool
+    public function isQueueAvailable(string $city, string $visaType): bool
     {
-        $isAvailable = $this->redisClient->get(RedisKeyEnum::IS_AVAILABLE.$city);
+        $isAvailable = $this->redisClient->get(RedisKeyEnum::IS_AVAILABLE.$city.$visaType);
 
         if ($isAvailable === null) {
-            $this->redisClient->set(RedisKeyEnum::IS_AVAILABLE, true);
+            $this->redisClient->set(RedisKeyEnum::IS_AVAILABLE.$city.$visaType, true);
             $isAvailable = true;
         }
 
         return (bool) $isAvailable;
     }
 
-    public function setAvailableQueue(bool $available, string $city): void
+    public function setAvailableQueue(bool $available, string $city, string $visaType): void
     {
-        $this->redisClient->set(RedisKeyEnum::IS_AVAILABLE.$city, $available);
+        $this->redisClient->set(RedisKeyEnum::IS_AVAILABLE.$city.$visaType, $available);
     }
 
-    public function isOpenDate(string $city): bool
+    public function isOpenDate(string $city, string $visaType): bool
     {
-        $isAvailable = $this->redisClient->get(RedisKeyEnum::OPEN_DATE.$city);
+        $isAvailable = $this->redisClient->get(RedisKeyEnum::OPEN_DATE.$city.$visaType);
 
         if ($isAvailable === null) {
-            $this->redisClient->set(RedisKeyEnum::OPEN_DATE.$city, false);
+            $this->redisClient->set(RedisKeyEnum::OPEN_DATE.$city.$visaType, false);
             $isAvailable = false;
         }
 
         return (bool) $isAvailable;
     }
 
-    public function setOpenDate(bool $available, string $city): void
+    public function setOpenDate(bool $available, string $city, string $visaType): void
     {
-        $this->redisClient->set(RedisKeyEnum::OPEN_DATE.$city, $available);
+        $this->redisClient->set(RedisKeyEnum::OPEN_DATE.$city.$visaType, $available);
     }
 }
