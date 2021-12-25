@@ -10,4 +10,5 @@ class CityEnum
     public const YEKATERINBURG = 'EKB';
     public const VLADIVOSTOK   = 'VVO';
     public const NUR_SULTAN    = 'AST';
+    public const WARSAW        = 'W';
 }
